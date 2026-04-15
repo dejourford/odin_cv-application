@@ -32,7 +32,7 @@ main {
     cursor: pointer;
 }
 
-.create-cv-button {
+.button {
     border: 1px solid black;
     padding: 0.3rem;
     cursor: pointer;
