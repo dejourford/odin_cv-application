@@ -45,3 +45,12 @@ form {
     max-width: 600px;
     margin: 0 auto;
 }
+
+.timeframe {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.timeframe #to::before {
+    content: "to ";
+}

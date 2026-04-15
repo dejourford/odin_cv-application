@@ -6,13 +6,18 @@ import { Input } from "./components/Input"
 function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [cvData, setCvData] = useState(null);
-  
-  
-  const handleEdit = (e) => {
+  const [formDataState, setFormDataState] = useState({
+    name: "",
+    email: "",
+    phone: ""
+  });
+
+  const handleEdit = () => {
     // if edit button is clicked show input fields with data pre-filled
-    e.preventDefault();
+    // e.preventDefault();
     console.log("edit mode...")
 
+    setFormDataState(cvData);
     setIsSubmitted(false);
 
   }
@@ -21,66 +26,92 @@ function App() {
     e.preventDefault();
     console.log("displaying cd data...")
 
-    // get form data
-    const formData = new FormData(e.target)
-    console.log(formData)
-
-    const data = {
-      name: formData.get("name")
-    }
-
-    setCvData(data);
+    setCvData(formDataState);
     setIsSubmitted(true);
   }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormDataState(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
 
   return (
     <>
       <h1>CV Application</h1>
       <main>
-        {isSubmitted ? (
-          <div className="cv-display">
-            <h2>{cvData.name}</h2>
-            <button className="button" type="button" id="edit-cv-button" onClick={handleEdit}>Edit</button>
-          </div>
-        )  : (
-        <form onSubmit={handleSubmit}>
-          {/* Personal Info Section */}
-          <section className="cv-section" id="personal">
-            <h2>Personal Information</h2>
-            <Input type={"text"} name={"name"} />
-            <Input type={"email"} name={"email"} />
-            <Input type={"number"} name={"phone"} />
+        {isSubmitted ?
+          (
+            <div className="cv-display">
+              {console.log(cvData)}
+              {/* personal info */}
+              <section className="cv-section" id="personal">
+                <h2>{cvData.name}</h2>
+                <h2>{cvData.email}</h2>
+                <h2>{cvData.phone}</h2>
+              </section>
+              {/* education */}
+              <section className="cv-section" id="personal">
+                <h2>{cvData.schoolName}</h2>
+                <h2>{cvData.major}</h2>
+                <h2>{cvData.graduationYear}</h2>
+              </section>
 
-          </section>
+              {/* work experience */}
+              <section className="cv-section" id="personal">
+                <h2>{cvData.companyName}</h2>
+                <h2>{cvData.position}</h2>
+                <h2>{cvData.reponsibilities}</h2>
+                <div className="timeframe">
+                  <h2 id="from">{cvData.from}</h2>
+                  <h2 id="to">{cvData.to}</h2>
+                </div>
+              </section>
+              <button className="button" type="button" id="edit-cv-button" onClick={handleEdit}>Edit</button>
+            </div>
+          ) :
+          (
+            <form onSubmit={handleSubmit}>
+              {/* Personal Info Section */}
+              <section className="cv-section" id="personal">
+                <h2>Personal Information</h2>
+                <Input type={"text"} name={"name"} value={formDataState.name} onChange={handleChange} />
+                <Input type={"email"} name={"email"} value={formDataState.email} onChange={handleChange} />
+                <Input type={"number"} name={"phone"} value={formDataState.phone} onChange={handleChange} />
 
-          {/* Education Section */}
-          <section className="cv-section" id="education">
-            <h2>Education Information</h2>
+              </section>
 
-            <Input type={"text"} name={"school name"} />
-            <Input type={"text"} name={"major"} />
-            <Input type={"number"} name={"year of graduation"} />
+              {/* Education Section */}
+              <section className="cv-section" id="education">
+                <h2>Education Information</h2>
 
-          </section>
+                <Input type={"text"} name={"schoolName"} value={formDataState.schoolName} onChange={handleChange} />
+                <Input type={"text"} name={"major"} value={formDataState.major} onChange={handleChange} />
+                <Input type={"number"} name={"graduationYear"} value={formDataState.graduationYear} onChange={handleChange} />
 
-          {/* Work Experience Section */}
-          <section className="cv-section" id="experience">
-            <h2>Work Experience</h2>
+              </section>
 
-            <Input type={"text"} name={"company name"} />
-            <Input type={"text"} name={"position"} />
-            <Input type={"textarea"} name={"responsibilities"} />
-            <Input type={"number"} name={"from"} />
-            <Input type={"number"} name={"to"} />
+              {/* Work Experience Section */}
+              <section className="cv-section" id="experience">
+                <h2>Work Experience</h2>
 
-          </section>
+                <Input type={"text"} name={"companyName"} value={formDataState.companyName} onChange={handleChange} />
+                <Input type={"text"} name={"position"} value={formDataState.position} onChange={handleChange} />
+                <Input type={"textarea"} name={"responsibilities"} value={formDataState.reponsibilities} onChange={handleChange} />
+                <Input type={"number"} name={"from"} value={formDataState.from} onChange={handleChange} />
+                <Input type={"number"} name={"to"} value={formDataState.to} onChange={handleChange} />
 
-          {/* Form Buttons */}
-          <button className="button" type="button" id="edit-cv-button" onClick={handleEdit}>Edit</button>
-          <button className="button" type="submit" id="create-cv-button">Create CV!</button>
-        </form>
-        )}
+              </section>
+
+              {/* Form Buttons */}
+              <button className="button" type="button" id="edit-cv-button" onClick={handleEdit}>Edit</button>
+              <button className="button" type="submit" id="create-cv-button">Create CV!</button>
+            </form>
+          )}
       </main>
     </>
   )
