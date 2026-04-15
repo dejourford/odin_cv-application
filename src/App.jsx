@@ -12,7 +12,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("form submitted")
+    console.log("displaying cd data...")
   }
 
 
@@ -54,7 +54,7 @@ function App() {
 
           {/* Form Buttons */}
           <button className="button" id="edit-cv-button" onClick={handleEdit}>Edit</button>
-          <button className="button" id="create-cv-button" type="submit" onClick={handleSubmit}>Create CV!</button>
+          <button className="button" id="create-cv-button" onClick={handleSubmit}>Create CV!</button>
         </form>
       </main>
     </>
