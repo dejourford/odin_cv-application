@@ -7,10 +7,18 @@ function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [cvData, setCvData] = useState(null);
   const [formDataState, setFormDataState] = useState({
-    name: "",
-    email: "",
-    phone: ""
-  });
+  name: "",
+  email: "",
+  phone: "",
+  schoolName: "",
+  major: "",
+  graduationYear: "",
+  companyName: "",
+  position: "",
+  responsibilities: "",
+  from: "",
+  to: ""
+});
 
   const handleEdit = () => {
     // if edit button is clicked show input fields with data pre-filled
@@ -65,7 +73,7 @@ function App() {
               <section className="cv-section" id="personal">
                 <h2>{cvData.companyName}</h2>
                 <h2>{cvData.position}</h2>
-                <h2>{cvData.reponsibilities}</h2>
+                <h2>{cvData.responsibilities}</h2>
                 <div className="timeframe">
                   <h2 id="from">{cvData.from}</h2>
                   <h2 id="to">{cvData.to}</h2>
@@ -101,7 +109,7 @@ function App() {
 
                 <Input type={"text"} name={"companyName"} value={formDataState.companyName} onChange={handleChange} />
                 <Input type={"text"} name={"position"} value={formDataState.position} onChange={handleChange} />
-                <Input type={"textarea"} name={"responsibilities"} value={formDataState.reponsibilities} onChange={handleChange} />
+                <Input type={"textarea"} name={"responsibilities"} value={formDataState.responsibilities} onChange={handleChange} />
                 <Input type={"number"} name={"from"} value={formDataState.from} onChange={handleChange} />
                 <Input type={"number"} name={"to"} value={formDataState.to} onChange={handleChange} />
 
