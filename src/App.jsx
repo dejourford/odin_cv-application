@@ -1,12 +1,19 @@
+import { useState } from "react";
 import "./App.css"
 import { Input } from "./components/Input"
 
 
 function App() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [cvData, setCvData] = useState(null);
+  
+  
   const handleEdit = (e) => {
     // if edit button is clicked show input fields with data pre-filled
     e.preventDefault();
     console.log("edit mode...")
+
+    setIsSubmitted(false);
 
   }
 
@@ -18,8 +25,12 @@ function App() {
     const formData = new FormData(e.target)
     console.log(formData)
 
-    const name = formData.get("name")
-    console.log(name)
+    const data = {
+      name: formData.get("name")
+    }
+
+    setCvData(data);
+    setIsSubmitted(true);
   }
 
 
@@ -27,6 +38,12 @@ function App() {
     <>
       <h1>CV Application</h1>
       <main>
+        {isSubmitted ? (
+          <div className="cv-display">
+            <h2>{cvData.name}</h2>
+            <button className="button" type="button" id="edit-cv-button" onClick={handleEdit}>Edit</button>
+          </div>
+        )  : (
         <form onSubmit={handleSubmit}>
           {/* Personal Info Section */}
           <section className="cv-section" id="personal">
@@ -63,6 +80,7 @@ function App() {
           <button className="button" type="button" id="edit-cv-button" onClick={handleEdit}>Edit</button>
           <button className="button" type="submit" id="create-cv-button">Create CV!</button>
         </form>
+        )}
       </main>
     </>
   )
