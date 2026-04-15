@@ -3,6 +3,24 @@ import { Input } from "./components/Input"
 
 
 function App() {
+  const handleClick = (e) => {
+    // if edit button is clicked
+    if (e.target.id === "edit") {
+      console.log("truee  edit")
+    }
+
+    // if save button is clicked
+    if (e.target.id === "save") {
+      console.log("truee save")
+    }
+
+    // if create cv button is clicked
+    if (e.target.className.includes("create-cv")) {
+      console.log("truee")
+    }
+  }
+  
+  
   return (
     <>
       <h1>CV Application</h1>
@@ -16,8 +34,8 @@ function App() {
             <Input type={"email"} name={"email"} />
             <Input type={"number"} name={"phone"} />
             <div className="button-group">
-              <button type="button">Edit</button>
-              <button type="button">Save</button>
+              <button type="button" id="edit" onClick={handleClick}>Edit</button>
+              <button type="button" id="save" onClick={handleClick}>Save</button>
             </div>
           </form>
         </section>
@@ -30,8 +48,8 @@ function App() {
             <Input type={"text"} name={"major"} />
             <Input type={"number"} name={"year of graduation"} />
             <div className="button-group">
-              <button type="button">Edit</button>
-              <button type="button">Save</button>
+              <button type="button" id="edit">Edit</button>
+              <button type="button" id="save">Save</button>
             </div>
           </form>
         </section>
@@ -53,7 +71,7 @@ function App() {
         </section>
 
         {/* Create Form Button */}
-        <button className="create-cv-button">Create CV!</button>
+        <button className="create-cv-button" onClick={handleClick}>Create CV!</button>
       </main>
     </>
   )
