@@ -13,6 +13,13 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("displaying cd data...")
+
+    // get form data
+    const formData = new FormData(e.target)
+    console.log(formData)
+
+    const name = formData.get("name")
+    console.log(name)
   }
 
 
@@ -53,8 +60,8 @@ function App() {
           </section>
 
           {/* Form Buttons */}
-          <button className="button" id="edit-cv-button" onClick={handleEdit}>Edit</button>
-          <button className="button" id="create-cv-button" onClick={handleSubmit}>Create CV!</button>
+          <button className="button" type="button" id="edit-cv-button" onClick={handleEdit}>Edit</button>
+          <button className="button" type="submit" id="create-cv-button">Create CV!</button>
         </form>
       </main>
     </>

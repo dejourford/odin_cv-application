@@ -10,7 +10,8 @@ export function Input({type, name}) {
     return (
         <input  
         type={type} 
-        placeholder={name} 
+        placeholder={name}
+        name={name} 
         value={text}
         onChange={handleChange}
         />
