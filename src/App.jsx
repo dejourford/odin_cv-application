@@ -7,18 +7,18 @@ function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [cvData, setCvData] = useState(null);
   const [formDataState, setFormDataState] = useState({
-  name: "",
-  email: "",
-  phone: "",
-  schoolName: "",
-  major: "",
-  graduationYear: "",
-  companyName: "",
-  position: "",
-  responsibilities: "",
-  from: "",
-  to: ""
-});
+    name: "",
+    email: "",
+    phone: "",
+    schoolName: "",
+    major: "",
+    graduationYear: "",
+    companyName: "",
+    position: "",
+    responsibilities: "",
+    from: "",
+    to: ""
+  });
 
   const handleEdit = () => {
     // if edit button is clicked show input fields with data pre-filled
@@ -58,25 +58,28 @@ function App() {
               {console.log(cvData)}
               {/* personal info */}
               <section className="cv-section" id="personal">
-                <h2>{cvData.name}</h2>
-                <h2>{cvData.email}</h2>
-                <h2>{cvData.phone}</h2>
+                <h2>Personal Information</h2>
+                <h3>{cvData.name}</h3>
+                <h3>{cvData.email}</h3>
+                <h3>{cvData.phone}</h3>
               </section>
               {/* education */}
               <section className="cv-section" id="personal">
-                <h2>{cvData.schoolName}</h2>
-                <h2>{cvData.major}</h2>
-                <h2>{cvData.graduationYear}</h2>
+                <h2>Education Info</h2>
+                <h3>{cvData.schoolName}</h3>
+                <h3>{cvData.major}</h3>
+                <h3>{cvData.graduationYear}</h3>
               </section>
 
               {/* work experience */}
               <section className="cv-section" id="personal">
-                <h2>{cvData.companyName}</h2>
-                <h2>{cvData.position}</h2>
-                <h2>{cvData.responsibilities}</h2>
+                <h2>Work Experience</h2>
+                <h3>{cvData.companyName}</h3>
+                <h3>{cvData.position}</h3>
+                <h3>{cvData.responsibilities}</h3>
                 <div className="timeframe">
-                  <h2 id="from">{cvData.from}</h2>
-                  <h2 id="to">{cvData.to}</h2>
+                  <h3 id="from">{cvData.from}</h3>
+                  <h3 id="to">{cvData.to}</h3>
                 </div>
               </section>
               <button className="button" type="button" id="edit-cv-button" onClick={handleEdit}>Edit</button>
@@ -116,8 +119,10 @@ function App() {
               </section>
 
               {/* Form Buttons */}
-              <button className="button" type="button" id="edit-cv-button" onClick={handleEdit}>Edit</button>
-              <button className="button" type="submit" id="create-cv-button">Create CV!</button>
+              <div className="button-group">
+                <button className="button" type="button" id="edit-cv-button" onClick={handleEdit}>Edit</button>
+                <button className="button" type="submit" id="create-cv-button">Create CV!</button>
+              </div>
             </form>
           )}
       </main>
